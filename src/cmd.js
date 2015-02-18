@@ -2,7 +2,7 @@
  * ABSTRACT CLASS para los comandos de zebra
  *
  * @params {
- *		DPM       {float} (DEFAULT: 8): define el valor de los puntos por MM
+ *		DPM       {float} (DEFAULT: 8): 
  *		carret    {string} (DEFAULT: '^'): inicio de comandos imprimirbles
  *		delimiter {string} (DEFAULT: ','): delimitador de los argumentos del comando
  *		ident_lvl {int} (DEFAULT: 0): nivel de identacion del comando cuando se convierte a string
@@ -11,7 +11,14 @@
  * }
 */
 ZebraBuilder.Cmd = Class.extend({
+	/// <summary>comando de zpl</summary>
 	init: function(params) {
+		/// <summary>contructor</summary>
+		/// <param name="params" type="object">parametros opcionales</param>
+			/// <param name="DPM" type="float" default="8">define el valor de los puntos por MM"</param>
+			/// <param name="carret" type="string" default="^">caracter del carret"</param>
+			/// <param name="delimiter" type="string" default="^">caracter del carret"</param>
+		/// <returns type="Number">The area.</returns>
 		if (!params)
 			params = {};
 		this.carret = params.carret ? params.carret : '^';
@@ -28,13 +35,10 @@ ZebraBuilder.Cmd = Class.extend({
 			this.is_metric = params.is_metric;
 	},
 
-	/**
-	 * FUNCTION convierte el comando a string
-	 *
-	 * @params pretty {BOOL}: define si se concatenara la indentacion y
-	 *		se agrega un fin de linea al final
-	*/
 	toString: function(pretty) {
+		/// <summary>convierte el comando a string</summary>
+		/// <param name="pretty" type="BOOL">determina si tendra identacion y fin de linea el return"</param>
+		/// <returns type="string">comando de zpl</returns>
 		var args = Array.prototype.slice.call(arguments, 1).join(this.delimiter);
 		var indent = '';
 		if (pretty) {
